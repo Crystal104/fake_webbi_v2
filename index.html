@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SunEvision Billing Portal</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background-color: #f4f4f4;
+        }
+        .container {
+            width: 80%;
+            max-width: 800px;
+            text-align: center;
+            padding: 20px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin-top: 20px;
+        }
+        h1 {
+            color: #333;
+        }
+        input[type="text"] {
+            width: 80%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        th, td {
+            padding: 10px;
+            border: 1px solid #ddd;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>SunEvision Billing Portal</h1>
+        <input type="text" id="searchInput" placeholder="Search by Contract Number" onkeyup="filterTable()" />
+
+        <table id="contractTable">
+            <thead>
+                <tr>
+                    <th>Contract Number</th>
+                    <th>Status</th>
+                    <th>BI Submission Date</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td>OA-CL-15782H</td><td>Pending for Renewal</td><td>2025-01-15</td></tr>
+                <tr><td>OA-CL-16896F</td><td>Renewed</td><td>2025-02-10</td></tr>
+                <tr><td>OA-CL-16897F</td><td>Terminated</td><td>2025-03-05</td></tr>
+                <tr><td>OA-CL-17742E</td><td>Pending for Termination</td><td>2025-04-20</td></tr>
+                <tr><td>OA-CL-30045F</td><td>Pending for Renewal</td><td>2025-05-15</td></tr>
+                <tr><td>OA-CL-30092F</td><td>Renewed</td><td>2025-06-10</td></tr>
+                <tr><td>OA-CL-30093F</td><td>Pending for Termination</td><td>2025-07-05</td></tr>
+                <tr><td>OA-CL-30524E</td><td>Terminated</td><td>2025-08-20</td></tr>
+                <tr><td>OA-CL-30764E</td><td>Pending for Renewal</td><td>2025-09-15</td></tr>
+                <tr><td>OA-CL-31056D</td><td>Renewed</td><td>2025-10-10</td></tr>
+                <tr><td>OA-CL-31520C (Voided)</td><td>Terminated</td><td>2025-11-01</td></tr>
+                <tr><td>OA-CL-32016B</td><td>Pending for Renewal</td><td>2025-12-01</td></tr>
+                <tr><td>OA-CL-33559A (Voided)</td><td>Pending for Termination</td><td>2025-01-01</td></tr>
+                <tr><td>OA-CL-34101A</td><td>Renewed</td><td>2025-02-01</td></tr>
+                <tr><td>OA-CL-34102A</td><td>Terminated</td><td>2025-03-01</td></tr>
+                <tr><td>OA-CL-34103A</td><td>Pending for Renewal</td><td>2025-04-01</td></tr>
+                <!-- Add more rows for all contract numbers as needed -->
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+        function filterTable() {
+            const input = document.getElementById('searchInput');
+            const filter = input.value.toUpperCase();
+            const table = document.getElementById('contractTable');
+            const tr = table.getElementsByTagName('tr');
+
+            for (let i = 1; i < tr.length; i++) {
+                const td = tr[i].getElementsByTagName('td')[0];
+                if (td) {
+                    const txtValue = td.textContent || td.innerText;
+                    tr[i].style.display = txtValue.toUpperCase().indexOf(filter) > -1 ? '' : 'none';
+                }       
+            }
+        }
+    </script>
+</body>
+</html>
